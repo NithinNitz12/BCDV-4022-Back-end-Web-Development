@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket.IO Chat</title>
+    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+  </head>
+  <body>
+    <h1>Welcome to Socket.IO Chat</h1>
+    <button id="connectBtn">Connect</button>
+    <button id="disconnectBtn">Disconnect</button>
+    <button id="sendMessageBtn">Send Message</button>
+    <script>
+      const socket = io();
+
+      const connectBtn = document.getElementById("connectBtn");
+      const disconnectBtn = document.getElementById("disconnectBtn");
+      const sendMessageBtn = document.getElementById("sendMessageBtn");
+
+      connectBtn.onclick = () => {
+        socket.connect();
+      };
+
+      disconnectBtn.onclick = () => {
+        socket.disconnect();
+      };
+
+      sendMessageBtn.onclick = () => {
+        console.log("send message button");
+        const message = prompt("Enter your message:");
+        socket.emit("chat message", message);
+      };
+
+      socket.on('chat message', (msg) => {
+        console.log('Message received from server:', msg);
+      })
+    </script>
+  </body>
+</html>
