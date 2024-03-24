@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress API</title>
+</head>
+<body>
+  <h1>Welcome to Progress API</h1>
+  <button id="startProgressBtn">Start Progress</button>
+  <button id="stopProgressBtn">Stop Progress</button>
+
+  <script>
+    const startProgressBtn = document.getElementById('startProgressBtn');
+    const stopProgressBtn = document.getElementById('stopProgressBtn');
+
+    startProgressBtn.onclick = () => {
+      fetch('/start', { method: 'GET' })
+        .then(() => console.log('Start progress request sent'))
+        .catch((error) => console.error('Error sending start progress request:', error));
+    };
+
+    stopProgressBtn.onclick = () => {
+      fetch('/stop', { method: 'GET' })
+        .then(() => console.log('Stop progress request sent'))
+        .catch((error) => console.error('Error sending stop progress request:', error));
+    };
+  </script>
+</body>
+</html>
